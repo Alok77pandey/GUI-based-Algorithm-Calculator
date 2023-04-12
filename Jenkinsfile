@@ -4,20 +4,19 @@ pipeline {
   stages {
     stage("Build") {
       steps {
-        sh 'mvn -v'
       }
     }
 
     stage("Testing") {
       parallel {
         stage("Unit Tests") {
-          agent { docker 'openjdk:7-jdk-alpine' }
+          agent { docker 'openjdk:11-jdk-alpine' }
           steps {
             sh 'java -version'
           }
         }
         stage("Functional Tests") {
-          agent { docker 'openjdk:8-jdk-alpine' }
+          agent { docker 'openjdk:11-jdk-alpine' }
           steps {
             sh 'java -version'
           }
